@@ -2,16 +2,22 @@
   "name": "ts30032019",
   "version": "1.0.0",
   "description": "",
-  "main": "1-ts-check.ts",
+  "main": "old/1-ts-check.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
     "tslint": "^5.14.0",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }
