@@ -8,22 +8,18 @@ let period: number = 20;
 const baseUrl: string = 'http://localhost:4200';
 
 let firstName: string = 'Igor';
-
-let account: {
+type TAccount = {
     firstName: string;
     getName(): string;
-} = {
+};
+let account: TAccount = {
     firstName,
     getName(): string {
         return this.firstName;
     }
 }
 
-let person: {
-    firstName: string;
-    position: string;
-    getName(): string;
-} = {...account, position: 'JSDev'};
+let person: TAccount = {...account};
 
 let dates: number[] = [...[12, 13, 14]];
 
@@ -77,3 +73,33 @@ async function speakSlowly(items: string[]): Promise<void> {
 
 speakSlowly(['Hi', 'all,', 'TypeScript', 'is', 'awesome']);
 
+enum Size {
+    S = 44,
+    M = 48,
+    XL = 52,
+}
+
+let euroSize = Size[Size.S];
+let russinSize = Size.S;
+
+enum Actions {
+    AddUser = 'ADD_USER',
+    RemoveUser = 'ADD_USER',
+    DeleteUser = RemoveUser
+}
+
+const action = Actions[Actions.AddUser]
+
+function reducer(_state: number, action: { type: Actions }): number {
+    switch (action.type) {
+        case Actions.AddUser: {
+            return 1;
+        }
+        case Actions.DeleteUser: {
+            return 2;
+        }
+        default: {
+            return 0;
+        }
+    }
+}
