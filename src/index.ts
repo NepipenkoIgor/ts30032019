@@ -16,10 +16,10 @@
 // }
 
 
-export function average(a: number, b: number, c: number): string {
-    const avg: number = (a + b + c) / 3;
-    return `Average is ${avg}`;
-}
+// export function average(a: number, b: number, c: number): string {
+//     const avg: number = (a + b + c) / 3;
+//     return `Average is ${avg}`;
+// }
 
 // average(1, 2, 3, 4);
 // average(1, '2', 3);
@@ -110,3 +110,110 @@ export function average(a: number, b: number, c: number): string {
 // function fn({prop1: arg1 = 10, prop2: arg2 = 20}: st): { sum: number } {
 //     return {sum: arg1 + arg2};
 // };
+
+// interface IX {
+//     x: number;
+// }
+//
+// interface ISum {
+//     sum(): number;
+// }
+//
+// abstract class BasePoint {
+//     public readonly x: number = 1;
+//     protected y!: number;
+//     private z!: number;
+//
+//     protected constructor(..._arg: number[]) {
+//         this.x = 3;
+//     }
+//
+//     public abstract sum(): number;
+//
+//     public getX(): void {
+//         this.x = 1;
+//     }
+// }
+
+// class Point extends BasePoint {
+//     public constructor(..._arg: number[]) {
+//         super(..._arg);
+//     }
+//
+//     public sum(): number {
+//         return this.x + this.y;
+//     }
+// }
+
+// class Singleton {
+//     private static _instance: Singleton;
+//     private constructor() {
+//     }
+//     public static getInstance(): Singleton {
+//         if (!Singleton._instance) {
+//             Singleton._instance = new Singleton();
+//         }
+//         return Singleton._instance;
+//     }
+// }
+//
+// const inst1: Singleton = Singleton.getInstance();
+// const inst2: Singleton = Singleton.getInstance();
+//
+// class A extends Singleton{
+//
+// }
+
+// abstract class AbstractInputElement {
+//     public abstract getValue(): any;
+//
+//     public onFocus(): void {
+//         // set border to parent element
+//     }
+// }
+//
+// class UIInputElement extends AbstractInputElement {
+//     public getValue(): string {
+//         return 'string';
+//     }
+// }
+
+export type Contstructable = new (...args: any[]) => {};
+
+export function Timestamped<BC extends Contstructable>(Base: BC): any {
+    return class extends Base {
+        public timestamp: Date = new Date();
+    };
+}
+
+export function Tagged<BC extends Contstructable>(Base: BC): any {
+    return class extends Base {
+        public tagged: string = 'my_custom_tag';
+    };
+}
+
+class Point {
+    public constructor(
+        public x: number,
+        public y: number,
+    ) {
+    }
+}
+
+class SpecialPoint extends Tagged(Timestamped(Point)) {
+    public constructor(x: number, y: number, public z: number) {
+        super(x, y);
+    }
+}
+
+const point: SpecialPoint = new SpecialPoint(1, 2, 5);
+point.timestamp.getDate();
+
+// TODO subsequent declaration
+// export interface IA {
+//     a: number;
+// }
+//
+// export class IA {
+//     public a: number = 1;
+// }
